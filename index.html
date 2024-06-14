@@ -3,30 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Handball Übungen</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Jugendhandball Übungen</title>
+    <style>
+        .exercise-item {
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Handball Übungen</h1>
-    </header>
-    <main>
-        <section id="categories">
-            <h2>Kategorien</h2>
-            <ul>
-                <li><a href="#" onclick="filterExercises('U10')">U10</a></li>
-                <li><a href="#" onclick="filterExercises('U12')">U12</a></li>
-                <li><a href="#" onclick="filterExercises('U14')">U14</a></li>
-                <!-- Weitere Altersgruppen hinzufügen -->
-            </ul>
-        </section>
-        <section id="exercises">
-            <h2>Übungen</h2>
-            <div id="exercise-list">
-                <!-- Übungen werden hier dynamisch eingefügt -->
-            </div>
-        </section>
-    </main>
-    <script src="script.js"></script>
+    <h1>Jugendhandball Übungen</h1>
+    <select id="category-select" onchange="filterExercises(this.value)">
+        <option value="E-Jugend">E-Jugend</option>
+        <option value="D-Jugend">D-Jugend</option>
+        <option value="C-Jugend">C-Jugend</option>
+        <option value="B-Jugend">B-Jugend</option>
+        <option value="A-Jugend">A-Jugend</option>
+    </select>
+    <div id="exercise-list"></div>
+
+    <script>
+        const exercises = [
+            { id: 1, category: 'E-Jugend', name: 'Dribbling Übung', image: 'e-jugend-dribbling.png', pdf: 'e-jugend-dribbling.pdf' },
+            { id: 2, category: 'E-Jugend', name: 'Wurftraining', image: 'e-jugend-wurftraining.png', pdf: 'e-jugend-wurftraining.pdf' },
+            { id: 3, category: 'E-Jugend', name: 'Zirkeltraining', image: 'e-jugend-zirkeltraining.png', pdf: 'e-jugend-zirkeltraining.pdf' },
+            { id: 4, category: 'D-Jugend', name: 'Dribbling Übung', image: 'd-jugend-dribbling.png', pdf: 'd-jugend-dribbling.pdf' },
+            { id: 5, category: 'D-Jugend', name: 'Wurftraining', image: 'd-jugend-wurftraining.png', pdf: 'd-jugend-wurftraining.pdf' },
+            { id: 6, category: 'D-Jugend', name: 'Zirkeltraining', image: 'd-jugend-zirkeltraining.png', pdf: 'd-jugend-zirkeltraining.pdf' },
+            { id: 7, category: 'C-Jugend', name: 'Dribbling Übung', image: 'c-jugend-dribbling.png', pdf: 'c-jugend-dribbling.pdf' },
+            { id: 8, category: 'C-Jugend', name: 'Wurftraining', image: 'c-jugend-wurftraining.png', pdf: 'c-jugend-wurftraining.pdf' },
+            { id: 9, category: 'C-Jugend', name: 'Zirkeltraining', image: 'c-jugend-zirkeltraining.png', pdf: 'c-jugend-zirkeltraining.pdf' },
+            { id: 10, category: 'B-Jugend', name: 'Dribbling Übung', image: 'b-jugend-dribbling.png', pdf: 'b-jugend-dribbling.pdf' },
+            { id: 11, category: 'B-Jugend', name: 'Wurftraining', image: 'b-jugend-wurftraining.png', pdf: 'b-jugend-wurftraining.pdf' },
+            { id: 12, category: 'B-Jugend', name: 'Zirkeltraining', image: 'b-jugend-zirkeltraining.png', pdf: 'b-jugend-zirkeltraining.pdf' },
+            { id: 13, category: 'A-Jugend', name: 'Dribbling Übung', image: 'a-jugend-dribbling.png', pdf: 'a-jugend-dribbling.pdf' },
+            { id: 14, category: 'A-Jugend', name: 'Wurftraining', image: 'a-jugend-wurftraining.png', pdf: 'a-jugend-wurftraining.pdf' },
+            { id: 15, category: 'A-Jugend', name: 'Zirkeltraining', image: 'a-jugend-zirkeltraining.png', pdf: 'a-jugend-zirkeltraining.pdf' },
+            // Weitere Übungen hinzufügen
+        ];
+
+        function filterExercises(category) {
+            const exerciseList = document.getElementById('exercise-list');
+            exerciseList.innerHTML = '';
+            const filteredExercises = exercises.filter(ex => ex.category === category);
+            filteredExercises.forEach(ex => {
+                const exerciseItem = document.createElement('div');
+                exerciseItem.className = 'exercise-item';
+                exerciseItem.innerHTML = `
+                    <h3>${ex.name}</h3>
+                    <img src="${ex.image}" alt="${ex.name}">
+                    <a href="${ex.pdf}" download="${ex.name}.pdf">Download PDF</a>
+                `;
+                exerciseList.appendChild(exerciseItem);
+            });
+        }
+
+        // Initiale Anzeige der E-Jugend-Übungen
+        window.onload = function() {
+            filterExercises('E-Jugend');
+        };
+    </script>
 </body>
 </html>
