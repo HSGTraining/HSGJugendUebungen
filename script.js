@@ -1,5 +1,5 @@
 const exercises = [
-    { id: 1, category: 'U10', name: 'Dribbling Übung', image: 'dribbling.png' },
+    { id: 1, category: 'U10', name: 'Dribbling Übung''Wurftraining', image: 'dribbling.png''wurftraining.png' },
     { id: 2, category: 'U12', name: 'Wurftraining', image: 'wurftraining.png' },
     // Weitere Übungen hinzufügen
 ];
